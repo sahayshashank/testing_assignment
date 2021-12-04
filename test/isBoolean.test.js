@@ -18,4 +18,7 @@ describe("isBoolean",()=>{
     it("checks to see if null is boolean",()=>{
         expect(isBoolean(null)).to.equal(false)
     });
+    it("checks to see if array is boolean",()=>{
+        expect(isBoolean([1, 2, 3])).to.equal(false)
+    });
 })

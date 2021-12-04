@@ -1,21 +1,17 @@
 import chai from "chai"
-import isBoolean from "../src/isBoolean.js"
+import defaultTo from "../src/defaultTo.js"
 const expect = chai.expect
-
-describe("isBoolean",()=>{
-    it("checks to see if true is boolean",()=>{
-        expect(isBoolean(true)).to.equal(true)
+describe("defaultTo",()=>{
+    it("defaults null to false",()=>{
+        expect(defaultTo(null,false)).to.equal(false)
     });
-    it("checks to see if false is boolean",()=>{
-        expect(isBoolean(false)).to.equal(true)
+    it("defaults undefined to a number",()=>{
+        expect(defaultTo(undefined,420)).to.equal(420)
     });
-    it("checks to see if 1 is boolean",()=>{
-        expect(isBoolean(1)).to.equal(false)
+    it("defaults NaN to a string",()=>{
+        expect(defaultTo(NaN,"strr")).to.equal("strr")
     });
-    it("checks to see if 'test' is boolean",()=>{
-        expect(isBoolean("test")).to.equal(false)
-    });
-    it("checks to see if null is boolean",()=>{
-        expect(isBoolean(null)).to.equal(false)
+    it("no need to default",()=>{
+        expect(defaultTo(1,"test")).to.equal(1)
     });
 })

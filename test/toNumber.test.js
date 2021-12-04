@@ -1,21 +1,25 @@
 import chai from "chai"
-import isBoolean from "../src/isBoolean.js"
+import toNumber from "../src/toNumber.js"
 const expect = chai.expect
+const NAN = 0 / 0
 
-describe("isBoolean",()=>{
-    it("checks to see if true is boolean",()=>{
-        expect(isBoolean(true)).to.equal(true)
+describe("toNumber",()=>{
+    it("converts actual number value to number",()=>{
+        expect(toNumber(3.2)).to.equal(3.2)
     });
-    it("checks to see if false is boolean",()=>{
-        expect(isBoolean(false)).to.equal(true)
+    it("converts symbol to number and returns NAN",()=>{
+        expect(toNumber(Symbol.iterator)).to.equal(NAN)
     });
-    it("checks to see if 1 is boolean",()=>{
-        expect(isBoolean(1)).to.equal(false)
+    it("converts string value to number",()=>{
+        expect(toNumber("5.8")).to.equal(5.8)
     });
-    it("checks to see if 'test' is boolean",()=>{
-        expect(isBoolean("test")).to.equal(false)
+    it("converts null to number",()=>{
+        expect(toNumber(null)).to.equal(0)
     });
-    it("checks to see if null is boolean",()=>{
-        expect(isBoolean(null)).to.equal(false)
+    it("converts object to number",()=>{
+        expect(toNumber([1, 2, 3])).to.equal(`${[1, 2, 3]}`)
+    });
+    it("converts 0 to number",()=>{
+        expect(toNumber(0)).to.equal(0)
     });
 })

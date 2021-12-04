@@ -1,21 +1,21 @@
 import chai from "chai"
-import isBoolean from "../src/isBoolean.js"
+import words from "../src/words.js"
 const expect = chai.expect
 
-describe("isBoolean",()=>{
-    it("checks to see if true is boolean",()=>{
-        expect(isBoolean(true)).to.equal(true)
+describe("words",()=>{
+    it("return array of words in a string",()=>{
+        expect(words('fred, barney, & pebbles').length).to.equal(3)
     });
-    it("checks to see if false is boolean",()=>{
-        expect(isBoolean(false)).to.equal(true)
+    it("return array of words in a string with defined pattern",()=>{
+        expect(words('fred, barney, & pebbles', /[^, ]+/g).length).to.equal(4)
     });
-    it("checks to see if 1 is boolean",()=>{
-        expect(isBoolean(1)).to.equal(false)
+    it("return array of words in an empty string",()=>{
+        expect(words('').length).to.equal(0)
     });
-    it("checks to see if 'test' is boolean",()=>{
-        expect(isBoolean("test")).to.equal(false)
+    it("return array of words in an empty string",()=>{
+        expect(words('').length).to.equal(0)
     });
-    it("checks to see if null is boolean",()=>{
-        expect(isBoolean(null)).to.equal(false)
+    it("return array of words in a string with defined pattern",()=>{
+        expect(words('', /[^, ]+/g).length).to.equal(0)
     });
 })
